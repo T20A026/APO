@@ -1,0 +1,78 @@
+Ceph-Ansible, based Apache server
+
+Parker, Oliver, Abijah, and Olivers Backpack
+
+IP’s:
+
+Hostname:
+
+Assigned IP:
+
+controller01-parker
+
+10.0.5.90
+
+ansible01-parker
+
+10.0.5.91
+
+ansible02-parker
+
+10.0.5.92
+
+ceph01-parker
+
+10.0.5.16
+
+ceph02-parker
+
+10.0.5.17
+
+    Follow the “Automation with Ansible” lab up until you are installing webmin on the target systems. The following is a link to that lab: Ansible Automation Lab
+
+    At this point you should have an ubuntu 20.04 LTS based controller, and two CentOS 7 target systems.
+
+    Using the instructions provided in that same lab, add two additional CentOS 7 target systems to the network using the IP’s, and hostnames assigned in the IP table.
+
+    Next run git clone -b stable-6.0 https://github.com/ceph/ceph-ansible.git --recursive
+
+    Next we configured the ceph ansible configuration file as seen the project github and as highlighted below
+
+    After this we ran the playbook from inside the ceph-ansible directory, and ran site-container.yml.
+
+    Now the install is complete, and the dashboard will be accessible, at in out case http://ceph02-parker:8000
+
+    Then we used the UI to create a pool including our three nodes.
+
+Issues we had:
+
+VShpere did not like us. Ceph01 was unreachable despite firewall rules being set, by ansible. This was solved by a system reboot from the controller and ceph01.
+
+Typo in group names in the inventory file.
+Undefined monitoring_address variable in the ansible configuration file under “monitoring options”.
+
+Attempted to run ansible playbook in wrong directory
+
+When pool is created, use replicated, autoscaler on
+
+NEED 3 osds (1 osd per 1 raw hard drive, no partitions)
+
+Pro’s:
+
+Very robust, and redundant
+
+Very scalable
+
+Ansible makes setup much easier
+
+Has a web accessed Dashboard
+
+
+
+Con’s:
+
+Complicated compared to other solutions
+
+Resource hungry
+
+Documentation is sub par (normal and ansible)
